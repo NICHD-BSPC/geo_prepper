@@ -1,7 +1,7 @@
 import sys
 import os
 import importlib
-from . import utils
+import argparse
 import pandas as pd
 import subprocess
 import yaml
@@ -9,17 +9,16 @@ from pathlib import Path
 import shutil
 
 def parser():
-    ap = utils.make_parser(
-        description=utils.dent(
-            """
+    ap = argparse.ArgumentParser(
+        description="""
             This script takes a sampletable and prepares files for GEO submission.
 
             - symlinks raw and processed files to local directory
             - calculates md5 sums
             - creates files that mimic sections of GEO metadata spreadsheet
-            """
-        ),
-        epilog=utils.epilog(),
+        """,
+        formatter_class = argparse.RawTextHelpFormatter
+        #epilog=utils.epilog(),
     )
     ap.add_argument(
         "-s",
@@ -53,9 +52,9 @@ def parser():
         default=False
     )
 
-    args = ap.parse_args(sys.argv[2:])
+    args = ap.parse_args()
     if not args.output_dir or not args.sampletable or not args.config:
-        utils.error('Sample table, config and output directory are required parameters')
+        print('Sample table, config and output directory are required parameters')
         ap.print_help()
         sys.exit(1)
 
@@ -74,7 +73,7 @@ def unique_list(l):
 def check_config(c):
     required_tags = ['is_paired_end','file_cols','sample_col']
     if not all([t in c for t in required_tags]):
-        utils.error('Tags: ', ', '.join(required_tags), ' must be present in config file')
+        print('Tags: ', ', '.join(required_tags), ' must be present in config file')
         sys.exit(1)
 
 def run():
@@ -87,7 +86,7 @@ def run():
     try:
         c = yaml.load(open(args.config), Loader=yaml.FullLoader)
     except FileNotFoundError:
-        utils.error('Config file: ' + args.config + ' not found')
+        print('Config file: ' + args.config + ' not found')
         sys.exit(1)
     # check config for required tags
     check_config(c)
@@ -95,8 +94,8 @@ def run():
     # check for output directory and create it
     if odir.exists():
         if not force:
-            utils.error('Output directory: \'' + str(odir) + '\' already exists! ' + \
-                    'To overwrite please use \'-f/--force\' parameter.')
+            print('Output directory: \'' + str(odir) + '\' already exists! ' + \
+                  'To overwrite please use \'-f/--force\' parameter.')
             sys.exit(1)
         else:
             shutil.rmtree(odir)
@@ -132,14 +131,14 @@ def run():
     if is_paired_end:
         # and check for R1 and R2 tags in config
         if not all([key in columns.keys() for key in ['R1','R2']]):
-            utils.error('For paired-end experiments, R1 and R2 keys must be present ' +\
-                    'in \'columns\' section of config file')
+            print('For paired-end experiments, R1 and R2 keys must be present ' +\
+                  'in \'columns\' section of config file')
             sys.exit(1)
         paired_end = pd.DataFrame(columns=['R1', 'R2'])
 
     # check for presence of grouping_col in sampletable
     if gcol not in s.columns:
-        utils.error('Grouping column: ' + gcol + ' not found in sampletable')
+        print('Grouping column: ' + gcol + ' not found in sampletable')
         sys.exit(1)
 
     # get tech rep groups and counts

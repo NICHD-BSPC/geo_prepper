@@ -18,7 +18,7 @@ spreadsheet is tedious and error-prone, as we have to fill in information about
 potentially hundreds of samples, with data spread across potentially several different
 locations, essentially by hand.
 
-To address this problem, here we present ``geo_prepper``, a tool to automate
+To address this problem, here we present ``geo-prepper``, a tool to automate
 parts of the data submission process. Given a samplesheet and config file,
 the tool symlinks raw data to a desired output location, and automatically generates
 files that can be used to populate the GEO sample submission spreadsheet.

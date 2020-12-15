@@ -215,13 +215,13 @@ are renamed using the format: ``<sample_col>_<file_cols key>.<extension>``. So, 
 | Then the symlinked output file is ``wt_1_R1.fastq.gz``.
 |
 
-.. note::
+**Note:**
 
-   The 'extension' is calculated from the raw file name as the string following the first period (.)
-   in the basename of the file.
+The 'extension' is calculated from the raw file name as the string following the first period (.)
+in the basename of the file.
 
-   - For example, for a file named ``seq_core_237_R1.fastq.gz``, the extension will be ``.fastq.gz``.
-   - However, if the file is named ``seq_core_237.R1.fastq.gz`` the extension will be ``.R1.fastq.gz``.
+- For example, for a file named ``seq_core_237_R1.fastq.gz``, the extension will be ``.fastq.gz``.
+- However, if the file is named ``seq_core_237.R1.fastq.gz`` the extension will be ``.R1.fastq.gz``.
 
 In addition, the tool also outputs the following files:
 

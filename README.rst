@@ -1,9 +1,27 @@
-geo_prepper
-===========
+GEO submission prepper
+======================
 
-This is a tool that takes a sampletable with sample metadata and links to
-raw data files and outputs md5 hashes and TSVs that can be used to populate
-the NCBI GEO metadata submission template.
+Submission of NGS data to a public database such as NCBI GEO (`<https://www.ncbi.nlm.nih.gov/geo/>`_)
+is a critical part of the process of disseminating important scientific
+advances to the greater community. With the widespread adoption
+of NGS analysis and fast-paced development of associated scientific assays, the scope
+and complexity of such projects have increased dramatically, to the point
+that prominent scientific articles often employ several different NGS assays to tell
+different parts of the story.
+
+NCBI GEO is one of the most widely-used databases of NGS data. Submissions
+will typically include raw data files organized in a particular hierarchy and
+a metadata spreadsheet containing details about samples that are part of the
+study. The metadata spreadsheet is comprehensive, allowing users to include
+arbitrary numbers of samples and metadata. However, filling out this Excel
+spreadsheet is tedious and error-prone, as we have to fill in information about
+potentially hundreds of samples, with data spread across potentially several different
+locations, essentially by hand.
+
+To address this problem, here we present ``geo_prepper``, a tool to automate
+parts of the data submission process. Given a samplesheet and config file,
+the tool symlinks raw data to a desired output location, and automatically generates
+files that can be used to populate the GEO sample submission spreadsheet.
 
 Usage
 +++++
@@ -23,10 +41,8 @@ Usage
 	  -f/--force
 	        (Optional) Overwrite output directory if it exists
 
-Parameters
-++++++++++
 
-There are three required parameters:
+The tool has three required inputs:
 
 1. `config.yaml`_
 2. `sampletable`_
@@ -40,11 +56,8 @@ In addition, there are two optional parameters:
    If specified, this overrides the ``config.yaml`` specification (see `grouping_col`_ below).
 2. ``-f/--force``: If specified, this will overwrite an existing output directory.
 
-|
 
-.. warning::
-
-   File paths specified in the sampletable must be **absolute paths**.
+**Warning:** File paths specified in the sampletable must be **absolute paths**.
 
 Input
 +++++
@@ -99,10 +112,8 @@ Note that, all paths must be **absolute paths** to the described files.
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-.. note::
-
-    Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
-    be added in this section to match specific file types that are part of the submission.
+**Note:** Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
+be added in this section to match specific file types that are part of the submission.
 
 
 metadata_cols

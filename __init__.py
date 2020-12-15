@@ -1,10 +1,9 @@
 import sys
 import os
-import importlib
 import argparse
 import pandas as pd
-import subprocess
 import yaml
+import subprocess
 from pathlib import Path
 import shutil
 
@@ -18,7 +17,6 @@ def parser():
             - creates files that mimic sections of GEO metadata spreadsheet
         """,
         formatter_class = argparse.RawTextHelpFormatter
-        #epilog=utils.epilog(),
     )
     ap.add_argument(
         "-s",

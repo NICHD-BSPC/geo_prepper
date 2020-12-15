@@ -99,8 +99,10 @@ Note that, all paths must be **absolute paths** to the described files.
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-> **Note**: Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
-be added in this section to match specific file types that are part of the submission.
+.. note::
+
+    Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
+    be added in this section to match specific file types that are part of the submission.
 
 
 metadata_cols

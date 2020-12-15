@@ -1,0 +1,5 @@
+samplename	group	genotype	celltype	replicate	orig_filename	orig_filename_R2
+wt-1-1	wt-1	wt	mef	1	/data/pi/project/data/wt-1-1_R1.fastq.gz	/data/pi/project/data/wt-1-1_R2.fastq.gz
+wt-2-1	wt-2	wt	mef	1	/data/pi/project/data/wt-2-1_R1.fastq.gz	/data/pi/project/data/wt-2-1_R2.fastq.gz
+wt-2-2	wt-2	wt	mef	2	/data/pi/project/data/wt-2-2_R1.fastq.gz	/data/pi/project/data/wt-2-2_R2.fastq.gz
+

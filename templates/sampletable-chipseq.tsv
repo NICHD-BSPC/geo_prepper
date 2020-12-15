@@ -1,0 +1,5 @@
+samplename	group	celltype	replicate	orig_filename	peaks	bigwig
+wt-1-1	wt-1	mef	1	/data/pi/project/data/wt-1-1_R1.fastq.gz	/data/pi/project/data/wt-1-peaks.bed	/data/pi/project/data/wt-1.bigwig
+wt-1-2	wt-1	mef	2	/data/pi/project/data/wt-1-2_R1.fastq.gz	/data/pi/project/data/wt-1-peaks.bed	/data/pi/project/data/wt-1.bigwig
+wt-2-1	wt-2	mef	1	/data/pi/project/data/wt-2-1_R1.fastq.gz	/data/pi/project/data/wt-2-peaks.bed	/data/pi/project/data/wt-2.bigwig
+wt-2-2	wt-2	mef	2	/data/pi/project/data/wt-2-2_R1.fastq.gz	/data/pi/project/data/wt-2-peaks.bed	/data/pi/project/data/wt-2.bigwig

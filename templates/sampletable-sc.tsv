@@ -1,0 +1,3 @@
+samplename	group	celltype	replicate	bam	features	barcodes	matrix
+wt-1	wt-1	mef	1	/data/pi/project/data/wt-1.bam	/data/pi/project/data/wt-1_features.tsv.gz	/data/pi/project/data/wt-1_barcodes.tsv.gz	/data/pi/project/data/wt-1_matrix.mtx.gz
+wt-2	wt-2	mef	1	/data/pi/project/data/wt-2.bam	/data/pi/project/data/wt-2_features.tsv.gz	/data/pi/project/data/wt-2_barcodes.tsv.gz	/data/pi/project/data/wt-2_matrix.mtx.gz

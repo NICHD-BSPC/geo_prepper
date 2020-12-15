@@ -1,0 +1,18 @@
+sample_col: 'samplename'
+
+is_paired_end: False
+
+file_cols:
+   R1: 'bam'
+   features: 'features'
+   barcodes: 'barcodes'
+   matrix: 'matrix'
+
+metadata_cols:
+  - celltype
+
+skip_column_suffix:
+  - R1
+
+# (optional) column to group tech reps
+grouping_col: 'group'

@@ -1,0 +1,17 @@
+sample_col: 'samplename'
+
+is_paired_end: False
+
+file_cols:
+   R1: 'orig_filename'
+   peaks: 'peaks'
+   bigwig: 'bigwig'
+
+metadata_cols:
+  - celltype
+
+skip_column_suffix:
+  - bigwig
+
+# (optional) column to group tech reps
+grouping_col: 'group'

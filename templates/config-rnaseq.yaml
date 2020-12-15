@@ -1,0 +1,14 @@
+sample_col: 'samplename'
+
+is_paired_end: True
+
+file_cols:
+   R1: 'orig_filename'
+   R2: 'orig_filename_R2'
+
+metadata_cols:
+  - genotype
+  - celltype
+
+# (optional) column to group tech reps
+grouping_col: 'group'

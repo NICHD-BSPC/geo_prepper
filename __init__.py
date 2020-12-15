@@ -186,6 +186,7 @@ def run():
                 if not f:
                     continue
                 elif not os.path.exists(f):
+                    print('\tFile: ' + f + ' does not exist, skipping!')
                     continue
 
                 print('\tsample:', samples[i], '\tfile:', f)

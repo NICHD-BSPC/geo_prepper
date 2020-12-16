@@ -5,11 +5,10 @@ requirements = open(os.path.join(os.path.dirname(__file__), 'requirements.txt'))
 
 setuptools.setup(
     name="geo_prepper",
-    version="0.0.4",
+    version="0.0.5.5",
     author="Apratim Mitra",
     author_email="apratim.mitra@nih.gov",
     description="GEO submission prepper",
-    description_content_type="text/plain",
     long_description="Tool to prepare data for NCBI GEO submission",
     long_description_content_type="text/plain",
     license='GNU GPLv3',

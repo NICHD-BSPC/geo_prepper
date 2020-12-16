@@ -1,25 +1,26 @@
 GEO submission prepper
 ======================
 
-Submission of NGS data to a public database such as NCBI GEO (`<https://www.ncbi.nlm.nih.gov/geo/>`_)
+Submission of high-throughput sequencing data to a public database
+such as NCBI GEO (`<https://www.ncbi.nlm.nih.gov/geo/>`_)
 is a critical part of the process of disseminating important scientific
 advances to the greater community. With the widespread adoption
-of NGS analysis and fast-paced development of associated scientific assays, the scope
+of high-throughput sequencing and fast-paced development of associated scientific assays, the scope
 and complexity of such projects have increased dramatically, to the point
-that prominent scientific articles often employ several different NGS assays to tell
+that prominent scientific articles often employ several different sequencing assays to tell
 different parts of the story.
 
-NCBI GEO is one of the most widely-used databases of NGS data. Submissions
+NCBI GEO is one of the most widely-used databases of sequencing data. Submissions
 will typically include raw data files organized in a particular hierarchy and
 a metadata spreadsheet containing details about samples that are part of the
 study. The metadata spreadsheet is comprehensive, allowing users to include
 arbitrary numbers of samples and metadata. However, filling out this Excel
 spreadsheet is tedious and error-prone, as we have to fill in information about
-potentially hundreds of samples, with data spread across potentially several different
+potentially hundreds of samples, with data spread across several different
 locations, essentially by hand.
 
 To address this problem, here we present ``geo-prepper``, a tool to automate
-parts of the data submission process. Given a samplesheet and config file,
+parts of the data submission process to NCBI GEO. Given a samplesheet and config file,
 the tool symlinks raw data to a desired output location, and automatically generates
 files that can be used to populate the GEO sample submission spreadsheet.
 
@@ -65,7 +66,11 @@ Input
 config.yaml
 ^^^^^^^^^^^
 
-Configuration file with options specified in a yaml format. Below we list the accepted parameters
+This is a configuration file with options specified in a yaml format. Here
+is a sample ``config.yaml`` for a ChIP-Seq data set:
+`<link templates/config-chipseq.yaml>`_
+
+Below we list the accepted parameters
 of which `sample_col`_, `is_paired_end`_ and `file_cols`_ are required:
 
 sample_col

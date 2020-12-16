@@ -213,9 +213,9 @@ Output
 The tool outputs the following:
 
 1. `File links`_
-2. `md5hash.tsv`_
-3. `sample_section.tsv`_
-4. `paired_end.tsv`_
+2. `md5 hashes`_
+3. `sample section`_
+4. `paired-end section`_
 
 File links
 ^^^^^^^^^^
@@ -240,22 +240,22 @@ in the basename of the file.
 
 In addition, the tool also outputs the following files:
 
-md5hash.tsv
-^^^^^^^^^^^
+md5 hashes
+^^^^^^^^^^
 
 For each file specified in the sampletable, md5 hashes are calculated using the
 ``md5sum`` utility and output to a TSV with file names
 in the first column and md5 hashes in the second column.
 
-sample_section.tsv
-^^^^^^^^^^^^^^^^^^
+sample section
+^^^^^^^^^^^^^^
 
 This is a TSV where each row contains all files corresponding to a particular sample
 including metadata columns, technical replicates and processed files if any. This can be used
 to populate the ``Sample section`` in the GEO submission template.
 
-paired_end.tsv
-^^^^^^^^^^^^^^
+paired-end section
+^^^^^^^^^^^^^^^^^^
 
 This is only output for PE data and lists Read 1 and Read 2 fastq files for each sample
 in two columns. This can be used to populate the final ``Paired-end`` section in the

@@ -1,9 +1,9 @@
 import os
 import setuptools
 
-long_description = """
-Prepare data for NCBI GEO submission
-"""
+with open("README.rst", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
 requirements = open(os.path.join(os.path.dirname(__file__), 'requirements.txt')).readlines()
 
 setuptools.setup(
@@ -13,8 +13,7 @@ setuptools.setup(
     author_email="apratim.mitra@nih.gov",
     description=long_description,
     long_description=long_description,
-    long_description_content_type="text/plain",
-    description_content_type="text/plain",
+    long_description_content_type="text/x-rst",
     license='GNU GPLv3',
     url="http://github.com/NICHD-BSPC/geo-prepper",
     packages=['geo-prepper'],

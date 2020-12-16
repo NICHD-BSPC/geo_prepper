@@ -13,6 +13,7 @@ setuptools.setup(
     author_email="apratim.mitra@nih.gov",
     description=long_description,
     long_description=long_description,
+    long_description_content_type="text/plain",
     license='GNU GPLv3',
     url="http://github.com/NICHD-BSPC/geo-prepper",
     packages=['geo-prepper'],

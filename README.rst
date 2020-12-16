@@ -68,7 +68,7 @@ config.yaml
 
 This is a configuration file with options specified in a yaml format. Here
 is a sample ``config.yaml`` for a ChIP-Seq data set:
-`<link templates/config-chipseq.yaml>`_
+`link<templates/config-chipseq.yaml>`_
 
 Below we list the accepted parameters
 of which `sample_col`_, `is_paired_end`_ and `file_cols`_ are required:

@@ -14,6 +14,7 @@ setuptools.setup(
     description=long_description,
     long_description=long_description,
     long_description_content_type="text/plain",
+    description_content_type="text/plain",
     license='GNU GPLv3',
     url="http://github.com/NICHD-BSPC/geo-prepper",
     packages=['geo-prepper'],

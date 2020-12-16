@@ -210,8 +210,18 @@ Here is an example sampletable for a ChIP-Seq data set: `link <templates/samplet
 Output
 ++++++
 
-The tool outputs symlinks to the raw or processed files specified in the sample table that
-are renamed using the format: ``<sample_col>_<file_cols key>.<extension>``. So, for example, if
+The tool outputs the following:
+
+1. `File links`_
+2. `md5hash.tsv`_
+3. `sample_section.tsv`_
+4. `paired_end.tsv`_
+
+File links
+^^^^^^^^^^
+
+The tool creates symlinks to raw or processed files specified in the sampletable. These
+are named using the format: ``<sample_col>_<file_cols key>.<extension>``. So, for example, if
 
 - ``samplename`` is ``wt_1``
 - extension is ``.fastq.gz``
@@ -234,7 +244,7 @@ md5hash.tsv
 ^^^^^^^^^^^
 
 For each file specified in the sampletable, md5 hashes are calculated using the
-``md5sum`` utility with a ``subprocess.run`` call and output to a TSV with file names
+``md5sum`` utility and output to a TSV with file names
 in the first column and md5 hashes in the second column.
 
 sample_section.tsv
@@ -250,3 +260,84 @@ paired_end.tsv
 This is only output for PE data and lists Read 1 and Read 2 fastq files for each sample
 in two columns. This can be used to populate the final ``Paired-end`` section in the
 GEO submission template.
+
+Example output
+^^^^^^^^^^^^^^
+
+Here we give examples of output produced by the tool using the example files included in the
+``templates/`` directory.
+
+RNA-Seq data
+------------
+
+- Config file: `config.yaml <templates/config-rnaseq.yaml>`_
+- Sampletable: `sampletable <templates/sampletable-rnaseq.tsv>`_
+
+Output directory (say, ``geo-project``) will look like this::
+
+    geo-project\
+      ├─ wt-1-1_R1.fastq.gz -> /data/rnaseq/raw/wt-1-1_R1.fastq.gz
+      ├─ wt-1-1_R2.fastq.gz -> /data/rnaseq/raw/wt-1-1_R2.fastq.gz
+      ├─ wt-2-1_R1.fastq.gz -> /data/rnaseq/raw/wt-2-1_R1.fastq.gz
+      ├─ wt-2-1_R2.fastq.gz -> /data/rnaseq/raw/wt-2-1_R2.fastq.gz
+      ├─ wt-2-2_R1.fastq.gz -> /data/rnaseq/raw/wt-2-2_R1.fastq.gz
+      ├─ wt-2-2_R2.fastq.gz -> /data/rnaseq/raw/wt-2-2_R2.fastq.gz
+      ├─ md5hash.tsv
+      ├─ sample_section.tsv
+      └─ paired_end.tsv
+
+Output files:
+
+- `md5hash.tsv <templates/rnaseq/md5hash.tsv>`_
+- `sample_section.tsv <templates/rnaseq/sample_section.tsv>`_
+
+ChIP-Seq data
+-------------
+
+- Config file: `config.yaml <templates/config-chipseq.yaml>`_
+- Sampletable: `sampletable <templates/sampletable-chipseq.tsv>`_
+
+Output directory::
+
+    geo-project\
+      ├─ wt-1-1_R1.fastq.gz -> /data/chipseq/raw/wt-1-1_R1.fastq.gz
+      ├─ wt-1-2_R1.fastq.gz -> /data/chipseq/raw/wt-1-2_R1.fastq.gz
+      ├─ wt-2-1_R1.fastq.gz -> /data/chipseq/raw/wt-2-1_R1.fastq.gz
+      ├─ wt-2-2_R1.fastq.gz -> /data/chipseq/raw/wt-2-2_R1.fastq.gz
+      ├─ wt-1_peaks.bed -> /data/chipseq/wt-1/peaks.bed
+      ├─ wt-2_peaks.bed -> /data/chipseq/wt-2/peaks.bed
+      ├─ wt-1.bigwig -> /data/chipseq/wt-1/wt-1.bigwig
+      ├─ wt-2.bigwig -> /data/chipseq/wt-2/wt-2.bigwig
+      ├─ md5hash.tsv
+      └─ sample_section.tsv
+
+Output files:
+
+- `md5hash.tsv <templates/chipseq/md5hash.tsv>`_
+- `sample_section.tsv <templates/chipseq/sample_section.tsv>`_
+
+Single-cell data
+----------------
+
+- Config file: `config.yaml <templates/config-sc.yaml>`_
+- Sampletable: `sampletable <templates/sampletable-sc.tsv>`_
+
+Output directory::
+
+    geo-project\
+      ├─ wt-1.bam -> /data/pi/project/data/wt-1.bam
+      ├─ wt-2.bam -> /data/pi/project/data/wt-2.bam
+      ├─ wt-1_features.tsv.gz -> /data/pi/project/data/wt-1_features.tsv.gz
+      ├─ wt-1_barcodes.tsv.gz -> /data/pi/project/data/wt-1_barcodes.tsv.gz
+      ├─ wt-1_matrix.mtx.gz -> /data/pi/project/data/wt-1_matrix.mtx.gz
+      ├─ wt-2_features.tsv.gz -> /data/pi/project/data/wt-2_features.tsv.gz
+      ├─ wt-2_barcodes.tsv.gz -> /data/pi/project/data/wt-2_barcodes.tsv.gz
+      ├─ wt-2_matrix.mtx.gz -> /data/pi/project/data/wt-2_matrix.mtx.gz
+      ├─ md5hash.tsv
+      └─ sample_section.tsv
+
+Output files:
+
+- `md5hash.tsv <templates/single-cell/md5hash.tsv>`_
+- `sample_section.tsv <templates/single-cell/sample_section.tsv>`_
+

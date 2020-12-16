@@ -5,7 +5,7 @@ requirements = open(os.path.join(os.path.dirname(__file__), 'requirements.txt'))
 
 setuptools.setup(
     name="geo_prepper",
-    version="0.0.1",
+    version="0.0.2",
     author="Apratim Mitra",
     author_email="apratim.mitra@nih.gov",
     description="GEO submission prepper",

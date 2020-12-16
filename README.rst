@@ -96,8 +96,6 @@ file_cols
 Here we specify the columns containing files to include in the
 GEO submission as ``key:value`` pairs. Accepted keys are listed below:
 
-Note that, all paths must be **absolute paths** to the described files.
-
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | key      | description                                                                                                                                                                    |
 +==========+================================================================================================================================================================================+
@@ -117,9 +115,10 @@ Note that, all paths must be **absolute paths** to the described files.
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-**Note:** Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
+**Note I:** Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
 be added in this section to match specific file types that are part of the submission.
 
+**Note II:** All paths specified in the sampletable must be **absolute paths**.
 
 metadata_cols
 -------------
@@ -145,7 +144,7 @@ By default, all keys listed in the `file_cols`_ section, are included as a suffi
 
     file_cols:
         R1: 'orig_filename'
-        peaks : 'sicer'
+        peaks: 'sicer'
 
 and in the sampletable, we have the following lines:
 
@@ -162,10 +161,10 @@ The output files will be symlinked to the specified output directory (e.g. ``geo
 ::
 
     geo_project/
-      ├ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
-      ├ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
-      ├ wt_1_peaks.bed -> /data/project/sicer/peaks_237.bed
-      └ wt_2_peaks.bed -> /data/project/sicer/peaks_238.bed
+      ├─ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
+      ├─ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
+      ├─ wt_1_peaks.bed -> /data/project/sicer/peaks_237.bed
+      └─ wt_2_peaks.bed -> /data/project/sicer/peaks_238.bed
 
 So, the ``key`` in the ``file_cols`` section (e.g. ``peaks``), is included in the file name as
 a suffix (``_peaks``). To override this behavior, specify the corresponding columns in
@@ -182,10 +181,10 @@ output directory looks like:
 ::
 
     geo_project/
-      ├ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
-      ├ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
-      ├ wt_1.bed -> /data/project/sicer/peaks_237.bed
-      └ wt_2.bed -> /data/project/sicer/peaks_238.bed
+      ├─ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
+      ├─ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
+      ├─ wt_1.bed -> /data/project/sicer/peaks_237.bed
+      └─ wt_2.bed -> /data/project/sicer/peaks_238.bed
 
 grouping_col
 ------------

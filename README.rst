@@ -45,8 +45,8 @@ Usage
 
 The tool has three required inputs:
 
-1. `config.yaml`_
-2. `sampletable`_
+1. `config yaml`_
+2. `sample table`_
 3. ``OUTPUT_DIR``: This is the output directory where symlinks to raw data files and other files
    are created (see `Output`_ section). If the specified directory already exists, the tool
    exits with a warning.
@@ -63,7 +63,7 @@ In addition, there are two optional parameters:
 Input
 +++++
 
-config.yaml
+config yaml
 ^^^^^^^^^^^
 
 This is a configuration file with options specified in a yaml format. Here
@@ -193,8 +193,8 @@ This is used to specify technical replicates (if any). Samples having the same v
 in the ``grouping_col`` column, will be considered technical replicates. This is an optional
 parameter, and if unspecified, defaults to ``sample_col``.
 
-sampletable
-^^^^^^^^^^^
+sample table
+^^^^^^^^^^^^
 
 This is a TSV containing sample metadata where each row corresponds to an individual sample.
 Here is an example sampletable for a ChIP-Seq data set: `link <templates/sampletable-chipseq.tsv>`_

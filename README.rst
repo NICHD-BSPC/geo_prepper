@@ -30,7 +30,7 @@ Installation
 There are two ways to install this tool:
 
 conda
------
+^^^^^
 
 First set up a fresh minimal conda environment::
 
@@ -55,14 +55,14 @@ conda environment::
     pip install geo_prepper
 
 pip
----
+^^^
 
 This tool can also be installed directly using ``pip``::
 
     pip install geo_prepper
 
 Testing the installation
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once the install completes, ``geo_prepper`` will be available on the command-line.
 To make sure the installation has worked, try::

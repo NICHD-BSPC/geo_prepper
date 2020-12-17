@@ -24,12 +24,59 @@ parts of the data submission process to NCBI GEO. Given a samplesheet and config
 the tool symlinks raw data to a desired output location, and automatically generates
 files that can be used to populate the GEO sample submission spreadsheet.
 
+Installation
+++++++++++++
+
+There are two ways to install this tool:
+
+conda
+-----
+
+First set up a fresh minimal conda environment::
+
+    conda create -p env python pip
+
+This creates a new conda environment in a folder named ``env`` in the
+current directory, with ``python``, ``pip`` and any other dependencies.
+Once the environment is created, use the following commands to set up
+``geo_prepper``::
+
+    source activate env/
+    pip install geo_prepper
+
+Now, everytime you want to use the tool, just activate this environment,
+and run the tool.
+
+Alternatively, you can install ``geo_prepper`` directly into the ``base``
+conda environment::
+
+    source activate base
+    conda install pip
+    pip install geo_prepper
+
+pip
+---
+
+This tool can also be installed directly using ``pip``::
+
+    pip install geo_prepper
+
+Testing the installation
+------------------------
+
+Once the install completes, ``geo_prepper`` will be available on the command-line.
+To make sure the installation has worked, try::
+
+    geo_prepper -h
+
+If everything has worked, you should see the tool usage described below.
+
 Usage
 +++++
 
 ::
 
-	python __init__.py [-h] [-s SAMPLETABLE] [-c CONFIG] [-o OUTPUT_DIR] [-g GROUPING_COL] [-f]
+	geo_prepper [-h] [-s SAMPLETABLE] [-c CONFIG] [-o OUTPUT_DIR] [-g GROUPING_COL] [-f]
 
 	  -s/--sampletable SAMPLETABLE
 	        Sampletable with sample names, technical replicates (if any), links to raw data and other metadata
@@ -43,7 +90,7 @@ Usage
 	        (Optional) Overwrite output directory if it exists
 
 
-The tool has three required inputs:
+``geo_prepper`` has three required inputs:
 
 1. `config yaml`_
 2. `sample table`_

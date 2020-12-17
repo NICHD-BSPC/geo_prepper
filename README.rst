@@ -201,7 +201,7 @@ Here is an example sampletable for a ChIP-Seq data set: `link <templates/samplet
 
 - If the data set contains technical replicates, each *technical replicate* is a sample.
   Otherwise, each *biological replicate* constitutes a sample.
-- Column names of this file must correspond to those specified in the `config.yaml`_.
+- Column names of this file must correspond to those specified in the `config yaml`_ file.
 - The sampletable must contain the `sample_col`_ column.
 - The sampletable must contain the ``R1`` column from the `file_cols`_ section of the config.yaml.
   If `is_paired_end`_ is ``True``, then the sampletable must also contain the ``R2`` column.
@@ -245,21 +245,24 @@ md5 hashes
 
 For each file specified in the sampletable, md5 hashes are calculated using the
 ``md5sum`` utility and output to a TSV with file names
-in the first column and md5 hashes in the second column.
+in the first column and md5 hashes in the second column. `Here <templates/chipseq/md5hash.tsv>`_
+is the ``md5hash.tsv`` created for the example ChIP-Seq data set mentioned above.
 
 sample section
 ^^^^^^^^^^^^^^
 
 This is a TSV where each row contains all files corresponding to a particular sample
 including metadata columns, technical replicates and processed files if any. This can be used
-to populate the ``Sample section`` in the GEO submission template.
+to populate the ``Sample section`` in the GEO submission template. `Here <templates/chipseq/sample_section.tsv>`_
+is the ``sample_section.tsv`` created for the same example ChIP-Seq data set.
 
 paired-end section
 ^^^^^^^^^^^^^^^^^^
 
 This is only output for PE data and lists Read 1 and Read 2 fastq files for each sample
 in two columns. This can be used to populate the final ``Paired-end`` section in the
-GEO submission template.
+GEO submission template. For example, for an example RNA-Seq data set, this `paired_end.tsv <templates/rnaseq/paired_end.tsv>`_
+is output.
 
 Example output
 ^^^^^^^^^^^^^^

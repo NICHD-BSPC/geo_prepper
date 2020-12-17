@@ -68,7 +68,7 @@ config yaml
 
 This is a configuration file with options specified in a yaml format. Here
 is a sample ``config.yaml`` for a ChIP-Seq data set:
-`link <templates/config-chipseq.yaml>`_
+`<templates/config-chipseq.yaml>`_
 
 Below we list the accepted parameters
 of which `sample_col`_, `is_paired_end`_ and `file_cols`_ are required:
@@ -197,7 +197,7 @@ sample table
 ^^^^^^^^^^^^
 
 This is a TSV containing sample metadata where each row corresponds to an individual sample.
-Here is an example sampletable for a ChIP-Seq data set: `link <templates/sampletable-chipseq.tsv>`_
+Here is an example sampletable for a ChIP-Seq data set: `<templates/sampletable-chipseq.tsv>`_
 
 - If the data set contains technical replicates, each *technical replicate* is a sample.
   Otherwise, each *biological replicate* constitutes a sample.
@@ -245,7 +245,7 @@ md5 hashes
 
 For each file specified in the sampletable, md5 hashes are calculated using the
 ``md5sum`` utility and output to a TSV with file names
-in the first column and md5 hashes in the second column. `Here <templates/chipseq/md5hash.tsv>`_
+in the first column and md5 hashes in the second column. Here (`<templates/chipseq/md5hash.tsv>`_)
 is the ``md5hash.tsv`` created for the example ChIP-Seq data set mentioned above.
 
 **Note:** The md5 hashes of the example data are identical as it was run on empty test data. In practice,
@@ -256,7 +256,7 @@ sample section
 
 This is a TSV where each row contains all files corresponding to a particular sample
 including metadata columns, technical replicates and processed files if any. This can be used
-to populate the ``Sample section`` in the GEO submission template. `Here <templates/chipseq/sample_section.tsv>`_
+to populate the ``Sample section`` in the GEO submission template. Here (`<templates/chipseq/sample_section.tsv>`_)
 is the ``sample_section.tsv`` created for the same example ChIP-Seq data set.
 
 paired-end section
@@ -264,8 +264,8 @@ paired-end section
 
 This is only output for PE data and lists Read 1 and Read 2 fastq files for each sample
 in two columns. This can be used to populate the final ``Paired-end`` section in the
-GEO submission template. For example, for an example RNA-Seq data set, this `paired_end.tsv <templates/rnaseq/paired_end.tsv>`_
-is output.
+GEO submission template. For example, for an example RNA-Seq data set, this
+is the output tsv: `<templates/rnaseq/paired_end.tsv>`_
 
 Example output
 ^^^^^^^^^^^^^^
@@ -276,8 +276,8 @@ Here we give examples of output produced by the tool using the example files inc
 RNA-Seq data
 ------------
 
-- Config file: `config.yaml <templates/config-rnaseq.yaml>`_
-- Sampletable: `sampletable <templates/sampletable-rnaseq.tsv>`_
+- Config file: `<templates/config-rnaseq.yaml>`_
+- Sampletable: `<templates/sampletable-rnaseq.tsv>`_
 
 Output directory (say, ``geo-project``) will look like this::
 
@@ -294,14 +294,14 @@ Output directory (say, ``geo-project``) will look like this::
 
 Output files:
 
-- `md5hash.tsv <templates/rnaseq/md5hash.tsv>`_
-- `sample_section.tsv <templates/rnaseq/sample_section.tsv>`_
+- `<templates/rnaseq/md5hash.tsv>`_
+- `<templates/rnaseq/sample_section.tsv>`_
 
 ChIP-Seq data
 -------------
 
-- Config file: `config.yaml <templates/config-chipseq.yaml>`_
-- Sampletable: `sampletable <templates/sampletable-chipseq.tsv>`_
+- Config file: `<templates/config-chipseq.yaml>`_
+- Sampletable: `<templates/sampletable-chipseq.tsv>`_
 
 Output directory::
 
@@ -319,14 +319,14 @@ Output directory::
 
 Output files:
 
-- `md5hash.tsv <templates/chipseq/md5hash.tsv>`_
-- `sample_section.tsv <templates/chipseq/sample_section.tsv>`_
+- `<templates/chipseq/md5hash.tsv>`_
+- `<templates/chipseq/sample_section.tsv>`_
 
 Single-cell data
 ----------------
 
-- Config file: `config.yaml <templates/config-sc.yaml>`_
-- Sampletable: `sampletable <templates/sampletable-sc.tsv>`_
+- Config file: `<templates/config-sc.yaml>`_
+- Sampletable: `<templates/sampletable-sc.tsv>`_
 
 Output directory::
 
@@ -344,6 +344,6 @@ Output directory::
 
 Output files:
 
-- `md5hash.tsv <templates/single-cell/md5hash.tsv>`_
-- `sample_section.tsv <templates/single-cell/sample_section.tsv>`_
+- `<templates/single-cell/md5hash.tsv>`_
+- `<templates/single-cell/sample_section.tsv>`_
 

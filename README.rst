@@ -248,6 +248,9 @@ For each file specified in the sampletable, md5 hashes are calculated using the
 in the first column and md5 hashes in the second column. `Here <templates/chipseq/md5hash.tsv>`_
 is the ``md5hash.tsv`` created for the example ChIP-Seq data set mentioned above.
 
+**Note:** The md5 hashes of the example data are identical as it was run on empty test data. In practice,
+the hashes for each file will be unique.
+
 sample section
 ^^^^^^^^^^^^^^
 

@@ -1,3 +1,3 @@
 samplename	group	celltype	replicate	bam	features	barcodes	matrix
-wt-1	wt-1	mef	1	/data/pi/project/data/wt-1.bam	/data/pi/project/data/wt-1_features.tsv.gz	/data/pi/project/data/wt-1_barcodes.tsv.gz	/data/pi/project/data/wt-1_matrix.mtx.gz
-wt-2	wt-2	mef	1	/data/pi/project/data/wt-2.bam	/data/pi/project/data/wt-2_features.tsv.gz	/data/pi/project/data/wt-2_barcodes.tsv.gz	/data/pi/project/data/wt-2_matrix.mtx.gz
+wt-1	wt-1	mef	1	/data/single-cell/wt-1/cellranger/outs/possorted_genome_bam.bam	/data/single-cell/wt-1/cellranger/filtered_bc_matrices/features.tsv.gz	/data/single-cell/wt-1/cellranger/filtered_bc_matrices/barcodes.tsv.gz	/data/single-cell/wt-1/cellranger/filtered_bc_matrices/matrix.mtx.gz
+wt-2	wt-2	mef	1	/data/single-cell/wt-2/cellranger/outs/possorted_genome_bam.bam	/data/single-cell/wt-2/cellranger/filtered_bc_matrices/features.tsv.gz	/data/single-cell/wt-2/cellranger/filtered_bc_matrices/barcodes.tsv.gz	/data/single-cell/wt-2/cellranger/filtered_bc_matrices/matrix.mtx.gz

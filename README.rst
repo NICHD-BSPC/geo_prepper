@@ -1,34 +1,82 @@
 GEO submission prepper
 ======================
 
-Submission of NGS data to a public database such as NCBI GEO (`<https://www.ncbi.nlm.nih.gov/geo/>`_)
+Submission of high-throughput sequencing data to a public database
+such as NCBI GEO (`<https://www.ncbi.nlm.nih.gov/geo/>`_)
 is a critical part of the process of disseminating important scientific
 advances to the greater community. With the widespread adoption
-of NGS analysis and fast-paced development of associated scientific assays, the scope
+of high-throughput sequencing and fast-paced development of associated scientific assays, the scope
 and complexity of such projects have increased dramatically, to the point
-that prominent scientific articles often employ several different NGS assays to tell
+that prominent scientific articles often employ several different sequencing assays to tell
 different parts of the story.
 
-NCBI GEO is one of the most widely-used databases of NGS data. Submissions
+NCBI GEO is one of the most widely-used databases of sequencing data. Submissions
 will typically include raw data files organized in a particular hierarchy and
 a metadata spreadsheet containing details about samples that are part of the
 study. The metadata spreadsheet is comprehensive, allowing users to include
 arbitrary numbers of samples and metadata. However, filling out this Excel
 spreadsheet is tedious and error-prone, as we have to fill in information about
-potentially hundreds of samples, with data spread across potentially several different
+potentially hundreds of samples, with data spread across several different
 locations, essentially by hand.
 
-To address this problem, here we present ``geo-prepper``, a tool to automate
-parts of the data submission process. Given a samplesheet and config file,
+To address this problem, here we present ``geo_prepper``, a tool to automate
+parts of the data submission process to NCBI GEO. Given a samplesheet and config file,
 the tool symlinks raw data to a desired output location, and automatically generates
 files that can be used to populate the GEO sample submission spreadsheet.
+
+Installation
+++++++++++++
+
+There are two ways to install this tool:
+
+conda
+^^^^^
+
+First set up a fresh minimal conda environment::
+
+    conda create -p env python pip
+
+This creates a new conda environment in a folder named ``env`` in the
+current directory, with ``python``, ``pip`` and any other dependencies.
+Once the environment is created, use the following commands to set up
+``geo_prepper``::
+
+    source activate env/
+    pip install geo_prepper
+
+Now, everytime you want to use the tool, just activate this environment,
+and run the tool.
+
+Alternatively, you can install ``geo_prepper`` directly into the ``base``
+conda environment::
+
+    source activate base
+    conda install pip
+    pip install geo_prepper
+
+pip
+^^^
+
+This tool can also be installed directly using ``pip``::
+
+    pip install geo_prepper
+
+Testing the installation
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once the install completes, ``geo_prepper`` will be available on the command-line.
+To make sure the installation has worked, try::
+
+    geo_prepper -h
+
+If everything has worked, you should see the tool usage described below.
 
 Usage
 +++++
 
 ::
 
-	python __init__.py [-h] [-s SAMPLETABLE] [-c CONFIG] [-o OUTPUT_DIR] [-g GROUPING_COL] [-f]
+	geo_prepper [-h] [-s SAMPLETABLE] [-c CONFIG] [-o OUTPUT_DIR] [-g GROUPING_COL] [-f]
 
 	  -s/--sampletable SAMPLETABLE
 	        Sampletable with sample names, technical replicates (if any), links to raw data and other metadata
@@ -42,10 +90,10 @@ Usage
 	        (Optional) Overwrite output directory if it exists
 
 
-The tool has three required inputs:
+``geo_prepper`` has three required inputs:
 
-1. `config.yaml`_
-2. `sampletable`_
+1. `config yaml`_
+2. `sample table`_
 3. ``OUTPUT_DIR``: This is the output directory where symlinks to raw data files and other files
    are created (see `Output`_ section). If the specified directory already exists, the tool
    exits with a warning.
@@ -62,10 +110,14 @@ In addition, there are two optional parameters:
 Input
 +++++
 
-config.yaml
+config yaml
 ^^^^^^^^^^^
 
-Configuration file with options specified in a yaml format. Below we list the accepted parameters
+This is a configuration file with options specified in a yaml format. Here
+is a sample ``config.yaml`` for a ChIP-Seq data set:
+`<templates/config-chipseq.yaml>`_
+
+Below we list the accepted parameters
 of which `sample_col`_, `is_paired_end`_ and `file_cols`_ are required:
 
 sample_col
@@ -91,8 +143,6 @@ file_cols
 Here we specify the columns containing files to include in the
 GEO submission as ``key:value`` pairs. Accepted keys are listed below:
 
-Note that, all paths must be **absolute paths** to the described files.
-
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | key      | description                                                                                                                                                                    |
 +==========+================================================================================================================================================================================+
@@ -112,9 +162,10 @@ Note that, all paths must be **absolute paths** to the described files.
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-**Note:** Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
+**Note I:** Of the keys listed above, only ``R1`` is required. As such, any arbitrary keys can
 be added in this section to match specific file types that are part of the submission.
 
+**Note II:** All paths specified in the sampletable must be **absolute paths**.
 
 metadata_cols
 -------------
@@ -140,7 +191,7 @@ By default, all keys listed in the `file_cols`_ section, are included as a suffi
 
     file_cols:
         R1: 'orig_filename'
-        peaks : 'sicer'
+        peaks: 'sicer'
 
 and in the sampletable, we have the following lines:
 
@@ -157,10 +208,10 @@ The output files will be symlinked to the specified output directory (e.g. ``geo
 ::
 
     geo_project/
-      ├ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
-      ├ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
-      ├ wt_1_peaks.bed -> /data/project/sicer/peaks_237.bed
-      └ wt_2_peaks.bed -> /data/project/sicer/peaks_238.bed
+      ├─ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
+      ├─ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
+      ├─ wt_1_peaks.bed -> /data/project/sicer/peaks_237.bed
+      └─ wt_2_peaks.bed -> /data/project/sicer/peaks_238.bed
 
 So, the ``key`` in the ``file_cols`` section (e.g. ``peaks``), is included in the file name as
 a suffix (``_peaks``). To override this behavior, specify the corresponding columns in
@@ -177,10 +228,10 @@ output directory looks like:
 ::
 
     geo_project/
-      ├ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
-      ├ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
-      ├ wt_1.bed -> /data/project/sicer/peaks_237.bed
-      └ wt_2.bed -> /data/project/sicer/peaks_238.bed
+      ├─ wt_1_R1.fastq.gz -> /data/project/seq_core_237_R1.fastq.gz
+      ├─ wt_2_R1.fastq.gz -> /data/project/seq_core_238_R1.fastq.gz
+      ├─ wt_1.bed -> /data/project/sicer/peaks_237.bed
+      └─ wt_2.bed -> /data/project/sicer/peaks_238.bed
 
 grouping_col
 ------------
@@ -189,14 +240,15 @@ This is used to specify technical replicates (if any). Samples having the same v
 in the ``grouping_col`` column, will be considered technical replicates. This is an optional
 parameter, and if unspecified, defaults to ``sample_col``.
 
-sampletable
-^^^^^^^^^^^
+sample table
+^^^^^^^^^^^^
 
-This is a TSV where each row corresponds to an individual sample.
+This is a TSV containing sample metadata where each row corresponds to an individual sample.
+Here is an example sampletable for a ChIP-Seq data set: `<templates/sampletable-chipseq.tsv>`_
 
 - If the data set contains technical replicates, each *technical replicate* is a sample.
   Otherwise, each *biological replicate* constitutes a sample.
-- Column names of this file must correspond to those specified in the `config.yaml`_.
+- Column names of this file must correspond to those specified in the `config yaml`_ file.
 - The sampletable must contain the `sample_col`_ column.
 - The sampletable must contain the ``R1`` column from the `file_cols`_ section of the config.yaml.
   If `is_paired_end`_ is ``True``, then the sampletable must also contain the ``R2`` column.
@@ -205,8 +257,18 @@ This is a TSV where each row corresponds to an individual sample.
 Output
 ++++++
 
-The tool outputs symlinks to the raw or processed files specified in the sample table that
-are renamed using the format: ``<sample_col>_<file_cols key>.<extension>``. So, for example, if
+The tool outputs the following:
+
+1. `File links`_
+2. `md5 hashes`_
+3. `sample section`_
+4. `paired-end section`_
+
+File links
+^^^^^^^^^^
+
+The tool creates symlinks to raw or processed files specified in the sampletable. These
+are named using the format: ``<sample_col>_<file_cols key>.<extension>``. So, for example, if
 
 - ``samplename`` is ``wt_1``
 - extension is ``.fastq.gz``
@@ -225,23 +287,110 @@ in the basename of the file.
 
 In addition, the tool also outputs the following files:
 
-md5hash.tsv
-^^^^^^^^^^^
+md5 hashes
+^^^^^^^^^^
 
 For each file specified in the sampletable, md5 hashes are calculated using the
-``md5sum`` utility with a ``subprocess.run`` call and output to a TSV with file names
-in the first column and md5 hashes in the second column.
+``md5sum`` utility and output to a TSV with file names
+in the first column and md5 hashes in the second column. Here (`<templates/chipseq/md5hash.tsv>`_)
+is the ``md5hash.tsv`` created for the example ChIP-Seq data set mentioned above.
 
-sample_section.tsv
-^^^^^^^^^^^^^^^^^^
+**Note:** The md5 hashes of the example data are identical as it was run on empty test data. In practice,
+the hashes for each file will be unique.
+
+sample section
+^^^^^^^^^^^^^^
 
 This is a TSV where each row contains all files corresponding to a particular sample
 including metadata columns, technical replicates and processed files if any. This can be used
-to populate the ``Sample section`` in the GEO submission template.
+to populate the ``Sample section`` in the GEO submission template. Here (`<templates/chipseq/sample_section.tsv>`_)
+is the ``sample_section.tsv`` created for the same example ChIP-Seq data set.
 
-paired_end.tsv
-^^^^^^^^^^^^^^
+paired-end section
+^^^^^^^^^^^^^^^^^^
 
 This is only output for PE data and lists Read 1 and Read 2 fastq files for each sample
 in two columns. This can be used to populate the final ``Paired-end`` section in the
-GEO submission template.
+GEO submission template. For example, for an example RNA-Seq data set, this
+is the output tsv: `<templates/rnaseq/paired_end.tsv>`_
+
+Example output
+^^^^^^^^^^^^^^
+
+Here we give examples of output produced by the tool using the example files included in the
+``templates/`` directory.
+
+RNA-Seq data
+------------
+
+- Config file: `<templates/config-rnaseq.yaml>`_
+- Sampletable: `<templates/sampletable-rnaseq.tsv>`_
+
+Output directory (say, ``geo-project``) will look like this::
+
+    geo-project\
+      ├─ wt-1-1_R1.fastq.gz -> /data/rnaseq/raw/wt-1-1_R1.fastq.gz
+      ├─ wt-1-1_R2.fastq.gz -> /data/rnaseq/raw/wt-1-1_R2.fastq.gz
+      ├─ wt-2-1_R1.fastq.gz -> /data/rnaseq/raw/wt-2-1_R1.fastq.gz
+      ├─ wt-2-1_R2.fastq.gz -> /data/rnaseq/raw/wt-2-1_R2.fastq.gz
+      ├─ wt-2-2_R1.fastq.gz -> /data/rnaseq/raw/wt-2-2_R1.fastq.gz
+      ├─ wt-2-2_R2.fastq.gz -> /data/rnaseq/raw/wt-2-2_R2.fastq.gz
+      ├─ md5hash.tsv
+      ├─ sample_section.tsv
+      └─ paired_end.tsv
+
+Output files:
+
+- `<templates/rnaseq/md5hash.tsv>`_
+- `<templates/rnaseq/sample_section.tsv>`_
+
+ChIP-Seq data
+-------------
+
+- Config file: `<templates/config-chipseq.yaml>`_
+- Sampletable: `<templates/sampletable-chipseq.tsv>`_
+
+Output directory::
+
+    geo-project\
+      ├─ wt-1-1_R1.fastq.gz -> /data/chipseq/raw/wt-1-1_R1.fastq.gz
+      ├─ wt-1-2_R1.fastq.gz -> /data/chipseq/raw/wt-1-2_R1.fastq.gz
+      ├─ wt-2-1_R1.fastq.gz -> /data/chipseq/raw/wt-2-1_R1.fastq.gz
+      ├─ wt-2-2_R1.fastq.gz -> /data/chipseq/raw/wt-2-2_R1.fastq.gz
+      ├─ wt-1_peaks.bed -> /data/chipseq/wt-1/peaks.bed
+      ├─ wt-2_peaks.bed -> /data/chipseq/wt-2/peaks.bed
+      ├─ wt-1.bigwig -> /data/chipseq/wt-1/wt-1.bigwig
+      ├─ wt-2.bigwig -> /data/chipseq/wt-2/wt-2.bigwig
+      ├─ md5hash.tsv
+      └─ sample_section.tsv
+
+Output files:
+
+- `<templates/chipseq/md5hash.tsv>`_
+- `<templates/chipseq/sample_section.tsv>`_
+
+Single-cell data
+----------------
+
+- Config file: `<templates/config-sc.yaml>`_
+- Sampletable: `<templates/sampletable-sc.tsv>`_
+
+Output directory::
+
+    geo-project\
+      ├─ wt-1.bam -> /data/pi/project/data/wt-1.bam
+      ├─ wt-2.bam -> /data/pi/project/data/wt-2.bam
+      ├─ wt-1_features.tsv.gz -> /data/pi/project/data/wt-1_features.tsv.gz
+      ├─ wt-1_barcodes.tsv.gz -> /data/pi/project/data/wt-1_barcodes.tsv.gz
+      ├─ wt-1_matrix.mtx.gz -> /data/pi/project/data/wt-1_matrix.mtx.gz
+      ├─ wt-2_features.tsv.gz -> /data/pi/project/data/wt-2_features.tsv.gz
+      ├─ wt-2_barcodes.tsv.gz -> /data/pi/project/data/wt-2_barcodes.tsv.gz
+      ├─ wt-2_matrix.mtx.gz -> /data/pi/project/data/wt-2_matrix.mtx.gz
+      ├─ md5hash.tsv
+      └─ sample_section.tsv
+
+Output files:
+
+- `<templates/single-cell/md5hash.tsv>`_
+- `<templates/single-cell/sample_section.tsv>`_
+
